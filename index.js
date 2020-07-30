@@ -1,14 +1,17 @@
 const express = require('express');
+const redis = require('redis');
 
 const app = express();
+const client = redis.createClient();
+client.set('visits', 0);
 
 app.get('/', (req, res) => {
-    /* When we make changes to our project files in Docker, Docker detects those changes during the COPY instruction and
-    runs every subsequent instruction normally without cache. However, this means, in regards to npm, that if we do not
-    change the package.json file then it is an unnecessary step to run npm install again. */
-    res.send('How are you doing?');
+    client.get('visits', (err, visits) => {
+        res.send('Number of visits is ' + visits);
+        client.set('visits', parseInt(visits) + 1);
+    })
 });
 
-app.listen(8080, () => {
-    console.log('Listening on port 8080');
+app.listen(8081, () => {
+    console.log('Listening on port 8081');
 })
