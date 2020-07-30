@@ -15,6 +15,9 @@ FROM node:alpine
 # inside of a temporary container that is created using during the build process. The first argument is: the path to
 # folder to copy from our machine relative to the build context. The second argument is the place to copy stuff to
 # inside the container.
+# WORKDIR instruction sets a path from which any following command will be executed relative to this path in the
+# container. If the path does not exist, it will be automatically created for us.
+WORKDIR /usr/app
 COPY ./ ./
 
 # Install some dependencies
