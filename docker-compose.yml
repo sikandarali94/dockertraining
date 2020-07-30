@@ -1,0 +1,9 @@
+version: '3' # This line is required, which specifies what version of Docker Compose that we want to use.
+services:
+  redis-server:
+    image: 'redis' # Specifies what image we want to use for this service/container.
+  node-app:
+    build: . # Tells Docker to look in the current directory for a Dockerfile and use that to build an image for this service/container.
+    ports:
+      # First port is the port on our local machine. The second port is the port in the Docker container.
+      - "4001:8081" # - is what we use to specify an array in YAML. So technically we can map many different ports for a single service/container.
