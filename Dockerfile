@@ -7,11 +7,17 @@
 # alpine tag for their images.
 FROM node:alpine
 
-# Install some dependencies
 # At this point we are asking to install dependencies, however, the package.json file is not copied into the container.
 # This is why this step gives us warnings that it could not find a package.json file. The takeaway here is that when we
 # are building an image, none of the files inside of our project directory are available inside the container by
 # default.
+# The COPY instruction is used to move files and folders from our local file system on our machine to the file system
+# inside of a temporary container that is created using during the build process. The first argument is: the path to
+# folder to copy from our machine relative to the build context. The second argument is the place to copy stuff to
+# inside the container.
+COPY ./ ./
+
+# Install some dependencies
 RUN npm install
 
 # Default command
