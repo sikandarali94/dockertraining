@@ -1,3 +1,6 @@
+# Inside this file, Docker compose is automatically going to create both these containers on essentially the same
+# network and they are going to have free access to communicate to each other without having to exchange or open up any
+# ports between the two.
 version: '3' # This line is required, which specifies what version of Docker Compose that we want to use.
 services:
   redis-server:
