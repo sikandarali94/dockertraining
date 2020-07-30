@@ -18,10 +18,16 @@ FROM node:alpine
 # WORKDIR instruction sets a path from which any following command will be executed relative to this path in the
 # container. If the path does not exist, it will be automatically created for us.
 WORKDIR /usr/app
-COPY ./ ./
+# By copying the package.json file first and running npm install is that we are explicitly telling Docker to see if
+# package.json has changed. If it has not then Docker just uses the cache of a previous build that has the dependencies
+# already installed that went through these exact instructions of installing the dependencies. So this, in other words,
+# minimizes cache busting.
+COPY ./package.json ./
 
 # Install some dependencies
 RUN npm install
+
+COPY ./ ./
 
 # Default command
 CMD ["npm", "start"]
