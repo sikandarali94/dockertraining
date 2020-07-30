@@ -22,3 +22,12 @@ RUN npm install
 
 # Default command
 CMD ["npm", "start"]
+
+# A container essentially has its own isolated set of ports that can recieve traffic, but by default no incoming traffic
+# to our computer is going to be directed into the container in order to make sure that any request from either our
+# computer or some outside computer will be redirected into the container. We have to set up an explicit port mapping
+# that automatically forwards a given port in our local network to a port inside the container. Please note that this
+# is only referring to incoming requests; a docker container can by default make requests on its own behalf to the
+# outside world. We do not set up port forwarding inside the Dockerfile, the port forwarding stuff is strictly a runtime
+# constraint e.g. docker run -p 8080:8080 <image id OR image name>. The first port on the left is the localhost port and
+# the second port on the right is the port inside the container -- these do not have to be identical.
