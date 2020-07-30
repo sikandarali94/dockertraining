@@ -8,6 +8,10 @@
 FROM node:alpine
 
 # Install some dependencies
+# At this point we are asking to install dependencies, however, the package.json file is not copied into the container.
+# This is why this step gives us warnings that it could not find a package.json file. The takeaway here is that when we
+# are building an image, none of the files inside of our project directory are available inside the container by
+# default.
 RUN npm install
 
 # Default command
