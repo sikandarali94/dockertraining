@@ -1,0 +1,13 @@
+version: '3'
+services:
+  web:
+    stdin_open: true
+    build: .
+    ports:
+      - "3000:3000"
+    # Volumes is where we set up configuration for Docker Volumes
+    volumes:
+      - /app/node_modules
+      # The . indicates current working directory. In this case it is the current working directory in the local file
+      # system.
+      - .:/app
