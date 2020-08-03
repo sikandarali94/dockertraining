@@ -15,3 +15,14 @@ services:
       # The . indicates current working directory. In this case it is the current working directory in the local file
       # system.
       - .:/app
+  # The downside to this approach for running our tests in a service is that we are getting all the output from our test
+  # suite inside of the logging interface of Docker Compose. And we do not have the ability to enter any Standard Input
+  # / Output to this service container e.g. we can't hit enter to get the test suite to rerun.
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules
+      - .:/app
+    command: ["npm", "run", "test"]
