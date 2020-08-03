@@ -2,7 +2,11 @@ version: '3'
 services:
   web:
     stdin_open: true
-    build: .
+    build:
+      # context describes where we want all files and folders for this image to be pulled from.
+      context: .
+      # dockerfile describes which Dockerfile to use within our build context.
+      dockerfile: Dockerfile.dev
     ports:
       - "3000:3000"
     # Volumes is where we set up configuration for Docker Volumes
