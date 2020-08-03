@@ -1,0 +1,14 @@
+# Naming this Dockerfile as Dockerfile.dev makes it clear that this Dockerfile is only supposed to be used for
+# development environment. The production Dockerfile will simply be named as just: Dockerfile. To run Dockerfile.dev,
+# we run this command: docker build -f Dockerfile.dev [-f flag specifies the file that is going to be used].
+
+FROM node:alpine
+
+WORKDIR '/app'
+
+COPY package.json .
+RUN npm install
+
+COPY . .
+
+CMD ["npm", "run", "start"]
