@@ -3,12 +3,14 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  /* When we edit a file locally, it does not get reflected in the container. So we need to fix if we are going to
+  create a development environment with a Docker container. */
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Edit <code>src/App.js</code> and save to reload. Hi there.
         </p>
         <a
           className="App-link"
