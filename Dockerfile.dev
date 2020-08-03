@@ -2,15 +2,17 @@
 # development environment. The production Dockerfile will simply be named as just: Dockerfile. To run Dockerfile.dev,
 # we run this command: docker build -f Dockerfile.dev [-f flag specifies the file that is going to be used].
 
-FROM node:alpine
+FROM node:latest
 
 WORKDIR '/app'
 
 COPY package.json .
-RUN npm install
+RUN yarn install
 
 # When deploying to Docker, we should make sure not to have node_modules dependencies installed in our build context as
 # we clearly install it during the build process of this image.
+# We should leave the COPY instruction because in the future we might decide not to use Docker Volumes with Docker
+# Compose OR use this Dockerfile as inspiration for the production version of Dockerfile.
 COPY . .
 
 CMD ["npm", "run", "start"]
