@@ -9,6 +9,8 @@ WORKDIR '/app'
 COPY package.json .
 RUN npm install
 
+# When deploying to Docker, we should make sure not to have node_modules dependencies installed in our build context as
+# we clearly install it during the build process of this image.
 COPY . .
 
 CMD ["npm", "run", "start"]
