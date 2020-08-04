@@ -1,12 +1,7 @@
 version: 2.1
-orbs:
-  node: circleci/node@1.1.6
 jobs:
   before-install:
-    executor:
-      name: node/default
-    docker:
-      - image: docker:latest
+    machine: true
     steps:
       - checkout
       - run:
