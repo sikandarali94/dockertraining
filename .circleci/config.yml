@@ -12,7 +12,15 @@ jobs:
           name: Run Tests
           command: |
             docker run -e CI=true siky98/docker-training npm run test -- --coverage
+  deploy:
+    machine: true
+    steps:
+      - run:
+          name: Lists Docker Images
+          command: |
+            docker image ls
 workflows:
   deploy-server:
     jobs:
       - before-install
+      - deploy
