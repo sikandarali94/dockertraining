@@ -8,6 +8,10 @@ jobs:
           name: Build Docker Image
           command: |
             docker build -t siky98/docker-training -f Dockerfile.dev .
+      - run:
+          name: Run Tests
+          command: |
+            docker run -e CI=true siky98/docker-training npm run test
 workflows:
   deploy-server:
     jobs:
