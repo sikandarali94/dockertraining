@@ -5,18 +5,22 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Build Docker Image
+          name: Build Docker Dev Image
           command: |
-            docker build -t siky98/docker-training -f Dockerfile.dev .
+            docker build -t siky98/docker-training-dev -f Dockerfile.dev .
       - run:
           name: Run Tests
           command: |
-            docker run -e CI=true siky98/docker-training npm run test -- --coverage
+            docker run -e CI=true siky98/docker-training-dev npm run test -- --coverage
+      - run:
+          name: Build Docker Prod Image
+          command: |
+            docker build -t siky98/docker-training-prod .
       - run:
           name: Cache Docker Image In Workspace
           command: |
             mkdir -p docker-workspace
-            docker save -o docker-workspace/docker-training.tar siky98/docker-training
+            docker save -o docker-workspace/docker-training.tar siky98/docker-training-prod
       - persist_to_workspace:
             root: docker-workspace
             paths:
