@@ -23,4 +23,6 @@ workflows:
   deploy-server:
     jobs:
       - before-install
-      - deploy
+      - deploy:
+          requires:
+            before-install
