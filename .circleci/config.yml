@@ -2,7 +2,7 @@ version: 2.1
 orbs:
   node: circleci/node@1.1.6
 jobs:
-  before_install:
+  before-install:
     steps:
       - checkout
       - run:
@@ -12,4 +12,4 @@ jobs:
 workflows:
   deploy-server:
     jobs:
-      - before_install
+      - before-install
