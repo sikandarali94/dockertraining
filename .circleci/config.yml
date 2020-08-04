@@ -1,7 +1,15 @@
 version: 2.1
 orbs:
   node: circleci/node@3.0.0
+jobs:
+  before_install:
+    steps:
+      - checkout
+      - run:
+          name: Build Docker Image
+          command: |
+            docker build -t siky98/docker-training -f Dockerfile.dev .
 workflows:
   node-tests:
     jobs:
-      - node/test
+      - before_install

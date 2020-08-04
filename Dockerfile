@@ -13,4 +13,4 @@ FROM nginx
 # We can use --from to copy from another phase. In this case we are copying from the builder phase. The next argument
 # is from which directory in the phase do we want to copy the contents from. The last argument is where we want to copy
 # those contents in the container.
-COPY --from=builder /app/build /user/share/nginx/html
+COPY --from=builder /app/build /usr/share/nginx/html
