@@ -12,6 +12,7 @@ jobs:
           name: Run Tests
           command: |
             docker run -e CI=true siky98/docker-training npm run test -- --coverage
+            docker image ls
   deploy:
     machine: true
     steps:
