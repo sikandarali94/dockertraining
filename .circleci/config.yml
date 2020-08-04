@@ -25,4 +25,4 @@ workflows:
       - before-install
       - deploy:
           requires:
-            before-install
+            - before-install
