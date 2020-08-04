@@ -5,6 +5,8 @@ jobs:
   before-install:
     executor:
       name: node/default
+    docker:
+      - image: docker:latest
     steps:
       - checkout
       - run:
