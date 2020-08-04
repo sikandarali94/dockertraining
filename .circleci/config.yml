@@ -10,7 +10,7 @@ jobs:
       - run:
           name: Build Docker Image
           command: |
-            docker build -t siky98/docker-training -f Dockerfile.dev
+            docker build -t siky98/docker-training -f Dockerfile.dev .
 workflows:
   deploy-server:
     jobs:
