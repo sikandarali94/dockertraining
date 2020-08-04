@@ -16,7 +16,7 @@ jobs:
           name: Cache Docker Image In Workspace
           command: |
             mkdir -p docker-workspace
-            docker save -o docker-workspace/docker-training.tar docker-training:latest
+            docker save -o docker-workspace/docker-training.tar siky98/docker-training
       - persist_to_workspace:
             root: docker-workspace
             paths:
