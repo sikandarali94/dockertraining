@@ -1,0 +1,52 @@
+version: 2.1
+jobs:
+  before-install:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: Build Docker Dev Image
+          command: |
+            docker build -t siky98/docker-training-dev -f Dockerfile.dev .
+      - run:
+          name: Run Tests
+          command: |
+            docker run -e CI=true siky98/docker-training-dev npm run test -- --coverage
+      - run:
+          name: Build Docker Prod Image
+          command: |
+            docker build -t siky98/docker-training-prod .
+      - run:
+          name: Cache Docker Image In Workspace
+          command: |
+            mkdir -p docker-workspace
+            docker save -o docker-workspace/docker-training.tar siky98/docker-training-prod
+      - persist_to_workspace:
+            root: docker-workspace
+            paths:
+              - docker-training.tar
+  deploy:
+    machine: true
+    steps:
+      - attach_workspace:
+          at: /tmp/docker-workspace
+      - run:
+          name: Installs SSH Pass Service
+          command: |
+            sudo apt-get update
+            sudo apt-get install sshpass
+      - run:
+          name: Lists Docker Workspace Directory
+          command: |
+            ls /tmp/docker-workspace/
+      - run:
+          name: Upload Cached Docker Image
+          command: |
+            sshpass -p "${SERVER_PASS}" scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r /tmp/docker-workspace/docker-training.tar root@167.71.138.216:/tmp/docker-workspace
+workflows:
+  deploy-server:
+    jobs:
+      - before-install
+      - deploy:
+          requires:
+            - before-install
