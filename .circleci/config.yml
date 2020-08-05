@@ -31,13 +31,9 @@ jobs:
       - attach_workspace:
           at: /tmp/docker-workspace
       - run:
-          name: Load Docker Image
+          name: Upload Cached Docker Image
           command: |
-            docker load < /tmp/docker-workspace/docker-training.tar
-      - run:
-          name: Lists Docker Images
-          command: |
-            docker image ls
+            sshpass -p "${SERVER_PASS}" scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r /tmp/docker-workspace/docker-training.tar root@167.71.138.216:/tmp/docker-workspace/docker-training.tar
 workflows:
   deploy-server:
     jobs:
