@@ -36,9 +36,13 @@ jobs:
             sudo apt-get update
             sudo apt-get install sshpass
       - run:
-          name: Upload Cached Docker Image
+          name: Lists Docker Workspace Directory
           command: |
-            sshpass -p "${SERVER_PASS}" scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r /tmp/docker-workspace/docker-training.tar root@167.71.138.216:/tmp/docker-workspace/docker-training.tar
+            ls /tmp/docker-workspace/
+#      - run:
+#          name: Upload Cached Docker Image
+#          command: |
+#            sshpass -p "${SERVER_PASS}" scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r /tmp/docker-workspace/docker-training.tar root@167.71.138.216:/tmp/docker-workspace/docker-training.tar
 workflows:
   deploy-server:
     jobs:
