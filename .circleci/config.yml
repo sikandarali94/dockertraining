@@ -22,9 +22,9 @@ jobs:
             mkdir -p docker-workspace
             docker save -o docker-workspace/docker-training.tar siky98/docker-training-prod
       - persist_to_workspace:
-            root: docker-workspace
-            paths:
-              - docker-training.tar
+          root: docker-workspace
+          paths:
+            - docker-training.tar
   deploy:
     machine: true
     steps:
@@ -40,9 +40,13 @@ jobs:
           command: |
             ls /tmp/docker-workspace/
       - run:
-          name: Upload Cached Docker Image
+          name: Upload Cached Docker Images On Server
           command: |
             sshpass -p "${SERVER_PASS}" scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r /tmp/docker-workspace/docker-training.tar root@167.71.138.216:/tmp/docker-workspace
+            sshpass -p "${SERVER_PASS}" scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r /tmp/docker-workspace/docker-training.tar root@178.128.172.24:/tmp/docker-workspace
+            sshpass -p "${SERVER_PASS}" scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r /tmp/docker-workspace/docker-training.tar root@209.97.139.14:/tmp/docker-workspace
+      - run:
+          name: Run
 workflows:
   deploy-server:
     jobs:
