@@ -33,7 +33,7 @@ jobs:
       - run:
           name: Installs SSH Pass Service
           command: |
-            ssh apt-get install sshpass
+            sudo apt-get install sshpass
       - run:
           name: Upload Cached Docker Image
           command: |
