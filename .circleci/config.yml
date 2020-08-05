@@ -40,13 +40,11 @@ jobs:
           command: |
             ls /tmp/docker-workspace/
       - run:
-          name: Upload Cached Docker Images On Server
+          name: Upload Cached Docker Images
           command: |
             sshpass -p "${SERVER_PASS}" scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r /tmp/docker-workspace/docker-training.tar root@167.71.138.216:/tmp/docker-workspace
             sshpass -p "${SERVER_PASS}" scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r /tmp/docker-workspace/docker-training.tar root@178.128.172.24:/tmp/docker-workspace
-            sshpass -p "${SERVER_PASS}" scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r /tmp/docker-workspace/docker-training.tar root@209.97.139.14:/tmp/docker-workspace
-      - run:
-          name: Run
+            sshpass -p "${SERVER_PASS}" scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r /tmp/docker-workspace/docker-training.tar root@167.71.138.216:/tmp/docker-workspace
 workflows:
   deploy-server:
     jobs:
