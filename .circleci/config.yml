@@ -54,9 +54,9 @@ jobs:
       - run:
           name: Load and Run Cached Docker Image
           command: |
-            sshpass -p "${SERVER_PASS}" ssh root@167.71.138.216 -oStrictHostKeyChecking=no "docker load < /root/workspace && docker run -d siky98/docker-training-prod"
-            sshpass -p "${SERVER_PASS}" ssh root@178.128.172.24 -oStrictHostKeyChecking=no "docker load < /root/workspace && docker run -d siky98/docker-training-prod"
-            sshpass -p "${SERVER_PASS}" ssh root@209.97.139.14 -oStrictHostKeyChecking=no "docker load < /root/workspace && docker run -d siky98/docker-training-prod"
+            sshpass -p "${SERVER_PASS}" ssh root@167.71.138.216 -oStrictHostKeyChecking=no "docker load < /root/workspace"
+            sshpass -p "${SERVER_PASS}" ssh root@178.128.172.24 -oStrictHostKeyChecking=no "docker load < /root/workspace"
+            sshpass -p "${SERVER_PASS}" ssh root@209.97.139.14 -oStrictHostKeyChecking=no "docker load < /root/workspace"
 workflows:
   deploy-server:
     jobs:
