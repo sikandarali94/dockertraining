@@ -42,9 +42,9 @@ jobs:
       - run:
           name: Upload Cached Docker Images
           command: |
-            sshpass -p "${SERVER_PASS}" scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r /tmp/docker-workspace/docker-training.tar root@167.71.138.216:/tmp/docker-workspace
-            sshpass -p "${SERVER_PASS}" scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r /tmp/docker-workspace/docker-training.tar root@178.128.172.24:/tmp/docker-workspace
-            sshpass -p "${SERVER_PASS}" scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r /tmp/docker-workspace/docker-training.tar root@209.97.139.14:/tmp/docker-workspace
+            sshpass -p "${SERVER_PASS}" scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r /tmp/docker-workspace/docker-training.tar root@167.71.138.216:docker-workspace
+            sshpass -p "${SERVER_PASS}" scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r /tmp/docker-workspace/docker-training.tar root@178.128.172.24:docker-workspace
+            sshpass -p "${SERVER_PASS}" scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r /tmp/docker-workspace/docker-training.tar root@209.97.139.14:docker-workspace
       - run:
           name: Stop and Remove Running Containers
           command: |
