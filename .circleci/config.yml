@@ -42,9 +42,9 @@ jobs:
       - run:
           name: Upload Cached Docker Images
           command: |
-            sshpass -p "${SERVER_PASS}" scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r /tmp/docker-workspace/docker-training.tar root@167.71.138.216:docker-workspace
-            sshpass -p "${SERVER_PASS}" scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r /tmp/docker-workspace/docker-training.tar root@178.128.172.24:docker-workspace
-            sshpass -p "${SERVER_PASS}" scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r /tmp/docker-workspace/docker-training.tar root@209.97.139.14:docker-workspace
+            sshpass -p "${SERVER_PASS}" scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r /tmp/docker-workspace/docker-training.tar root@167.71.138.216:workspace
+            sshpass -p "${SERVER_PASS}" scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r /tmp/docker-workspace/docker-training.tar root@178.128.172.24:workspace
+            sshpass -p "${SERVER_PASS}" scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r /tmp/docker-workspace/docker-training.tar root@209.97.139.14:workspace
       - run:
           name: Stop and Remove Running Containers
           command: |
@@ -54,9 +54,9 @@ jobs:
       - run:
           name: Load and Run Cached Docker Image
           command: |
-            sshpass -p "${SERVER_PASS}" ssh root@167.71.138.216 -oStrictHostKeyChecking=no "docker load < docker-workspace/docker-training.tar && docker run -d siky98/docker-training-prod"
-            sshpass -p "${SERVER_PASS}" ssh root@178.128.172.24 -oStrictHostKeyChecking=no "docker load < docker-workspace/docker-training.tar && docker run -d siky98/docker-training-prod"
-            sshpass -p "${SERVER_PASS}" ssh root@209.97.139.14 -oStrictHostKeyChecking=no "docker load < docker-workspace/docker-training.tar && docker run -d siky98/docker-training-prod"
+            sshpass -p "${SERVER_PASS}" ssh root@167.71.138.216 -oStrictHostKeyChecking=no "docker load < workspace/docker-training.tar && docker run -d siky98/docker-training-prod"
+            sshpass -p "${SERVER_PASS}" ssh root@178.128.172.24 -oStrictHostKeyChecking=no "docker load < workspace/docker-training.tar && docker run -d siky98/docker-training-prod"
+            sshpass -p "${SERVER_PASS}" ssh root@209.97.139.14 -oStrictHostKeyChecking=no "docker load < workspace/docker-training.tar && docker run -d siky98/docker-training-prod"
 workflows:
   deploy-server:
     jobs:
