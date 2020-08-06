@@ -48,9 +48,9 @@ jobs:
       - run:
           name: Stop Running Containers
           command: |
-            sshpass -p "${SERVER_PASS}" ssh root@167.71.138.216 -oStrictHostKeyChecking=no "docker stop docker-training-prod"
-            sshpass -p "${SERVER_PASS}" ssh root@178.128.172.24 -oStrictHostKeyChecking=no "docker stop docker-training-prod"
-            sshpass -p "${SERVER_PASS}" ssh root@209.97.139.14 -oStrictHostKeyChecking=no "docker stop docker-training-prod"
+            sshpass -p "${SERVER_PASS}" ssh root@167.71.138.216 -oStrictHostKeyChecking=no "docker stop docker-training-prod || true"
+            sshpass -p "${SERVER_PASS}" ssh root@178.128.172.24 -oStrictHostKeyChecking=no "docker stop docker-training-prod || true"
+            sshpass -p "${SERVER_PASS}" ssh root@209.97.139.14 -oStrictHostKeyChecking=no "docker stop docker-training-prod || true"
 workflows:
   deploy-server:
     jobs:
