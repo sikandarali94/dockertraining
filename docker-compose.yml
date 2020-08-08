@@ -4,3 +4,12 @@ services:
     image: 'postgres:latest'
     environment:
       - POSTGRES_PASSWORD=pass
+  redis:
+    image: 'redis:latest'
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules
+      - ./server:/app
