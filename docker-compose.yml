@@ -29,6 +29,8 @@ services:
       - PGPASSWORD=postgres_password
       - PGPORT=5432
   client:
+    # stdin_open: true fixes the create react app bug which immediately exits when starting with Docker Compose.
+    stdin_open: true
     build:
       dockerfile: Dockerfile.dev
       context: ./client
